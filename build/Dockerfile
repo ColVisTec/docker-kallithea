@@ -12,7 +12,7 @@ ENV LANG=C.UTF-8
 RUN : This is what to keep installed in the image. \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
-                    dumb-init ssh curl locales ca-certificates mercurial git python3 \
+                    dumb-init ssh curl locales ca-certificates mercurial git python3 busybox-static \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 

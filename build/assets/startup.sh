@@ -193,5 +193,14 @@ fi
 echo "Start SSH server ..."
 /etc/init.d/ssh start
 
+# Periodic indexing
+if [ "$KALLITHEA_CRON_INDEXING" = "TRUE" ]; then
+    # Reindex daily at 2:00 AM 
+    echo "Schedule periodic indexing ..."
+    mkdir -p /var/spool/cron/crontabs
+    echo "0 2 * * * kallithea-cli index-create -c \"$KALLITHEA_INI\"" > /var/spool/cron/crontabs/kallithea
+    busybox crond -L /dev/null
+fi
+
 echo "Start kallithea ..."
 su-exec kallithea:kallithea gearbox serve -c "$KALLITHEA_INI"
