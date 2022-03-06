@@ -83,10 +83,14 @@ Sort direction when default sort column is specified.
 A rough patch to the display template. ("asc" by default)  
 
 - `KALLITHEA_FIX_PERMISSION`  
-If set to TRUE, will overwrite the permissions of configuration files. (TRUE by default)  
+If set to TRUE, the configuration file permissions will be modified.  (TRUE by default)  
 
 - `KALLITHEA_FIX_REPOS_PERMISSION`  
-If set to TRUE, will overwrite the permissions of the repository files. (FALSE by default)  
+When set to TRUE, the permissions of the repository file are modified.  (FALSE by default)  
+
+- `KALLITHEA_CRON_INDEXING`  
+When set to TRUE, the search index is updated periodically. (FALSE by default)  
+Do it every day at 2:00 AM in container time. 
 
 - `KALLITHEA_DB_MIGRATION`  
 If set to TRUE (capitals exactly), it will run in migration assistance mode. (empty by default)  
