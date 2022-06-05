@@ -168,6 +168,12 @@ if [ ! -e "$KALLITHEA_INI" ]; then
     KALLITHEA_INI_TMP=${KALLITHEA_INI}.createtmp
     create_setup_ini_file "$KALLITHEA_INI_TMP"
 
+    if [ -n "$KALLITHEA_DB_REUSE" ]; then
+        KALLITHEA_DB_REUSE = "--no-reuse"
+    else
+        KALLITHEA_DB_REUSE = "--reuse"
+    fi
+    
     # Initialize the database.
     echo "Initialize the database ..."
     su-exec kallithea:kallithea kallithea-cli db-create -c "$KALLITHEA_INI_TMP" \
@@ -175,6 +181,7 @@ if [ ! -e "$KALLITHEA_INI" ]; then
         --password ${KALLITHEA_ADMIN_PASS:-"admin"} \
         --email ${KALLITHEA_ADMIN_MAIL:-"admin@example.com"} \
         --repos /kallithea/repos \
+        ${KALLITHEA_DB_REUSE} \
         --force-yes
     if [ $? -ne 0 ]; then echo "Failed to initialize database."; exit 1; fi 
     
