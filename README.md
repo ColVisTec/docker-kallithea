@@ -7,7 +7,7 @@ This image is built for multiple platforms using buildx.
 
 ## Tags
 
-- [latest, 0.5.1](https://github.com/toras9000/docker-kallithea/tree/main/build)
+- [latest, 0.5.2](https://github.com/toras9000/docker-kallithea/tree/main/build)
 
 ## Quick trial
 
