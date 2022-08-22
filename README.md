@@ -8,6 +8,7 @@ This image is built for multiple platforms using buildx.
 ## Tags
 
 - latest ([Dockerfile](https://github.com/toras9000/docker-kallithea/tree/main/build))
+- 0.6.0
 - 0.5.2
 - 0.5.1
 - 0.5.0
