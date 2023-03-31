@@ -19,6 +19,10 @@ on:
 jobs:
   build:
 
+    strategy:
+      matrix:
+        kallithea_version: [0.6.0, 0.6.1, 0.6.2, 0.6.3, 0.7.0]
+
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -76,8 +80,9 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
           tags: |
-            ghcr.io/svenroederer/docker-kallithea-toras9000:${{ github.ref_name }}-${{ github.sha }}
-            ghcr.io/svenroederer/docker-kallithea-toras9000:latest
+            ghcr.io/svenroederer/docker-kallithea-toras9000:${{ matrix.kallithea_version }}-${{ github.ref_name }}.${{ github.sha }}
+            ghcr.io/svenroederer/docker-kallithea-toras9000:${{ matrix.kallithea_version }}-latest
+          build-args: KALLITHEA_VER=${{ matrix.kallithea_version }}
 
       - name: Refresh cache
         run: |
