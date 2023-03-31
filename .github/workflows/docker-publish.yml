@@ -8,8 +8,7 @@ name: Docker
 on:
   push:
     branches:
-      - 'main'
-      - 'v*.*.*'
+      - '*'
   workflow_dispatch:
     inputs:
       with_latest:
