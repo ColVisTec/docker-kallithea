@@ -70,8 +70,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.ref_name }}-${{ github.sha }}
-            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/svenroederer/docker-kallithea-toras9000:${{ github.ref_name }}-${{ github.sha }}
+            ghcr.io/svenroederer/docker-kallithea-toras9000:latest
 
 #      - name: Sign the published Docker image
 #        if: ${{ github.event_name != 'pull_request' }}
