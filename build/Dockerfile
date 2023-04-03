@@ -40,7 +40,7 @@ RUN : This is only needed for kallithea installation. \
                            psycopg2 \
                            mysqlclient \
  && : Preparing the front-end files. \
- && su-exec kallithea:kallithea kallithea-cli front-end-build \
+ && kallithea-cli front-end-build \
  && : Clean up installation materials. \
  && apt-get purge -y \
                   build-essential libffi-dev \
