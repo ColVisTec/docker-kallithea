@@ -13,6 +13,7 @@ RUN : This is what to keep installed in the image. \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
                     dumb-init ssh curl locales ca-certificates mercurial git python3 libpq5 libmysqlclient21 busybox-static \
+                    python3-setuptools python3-psycopg2 python3-mysqldb \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -27,7 +28,7 @@ RUN : This is only needed for kallithea installation. \
  && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
  && apt-get install -y --no-install-recommends \
                     build-essential libffi-dev \
-                    python3-dev libpq-dev libmysqlclient-dev \
+                    python3-dev \
                     nodejs python3-pip \
  && : Build su-exec \
  && git -C /tmp clone https://github.com/ncopa/su-exec.git su-exec \
@@ -37,14 +38,12 @@ RUN : This is only needed for kallithea installation. \
  && : Install kallithea and optional packages.\
  && python3 -m pip install --no-cache-dir \
                            kallithea${KALLITHEA_VER:+==$KALLITHEA_VER} \
-                           psycopg2 \
-                           mysqlclient \
  && : Preparing the front-end files. \
  && kallithea-cli front-end-build \
  && : Clean up installation materials. \
  && apt-get purge -y \
                   build-essential libffi-dev \
-                  python3-dev libpq-dev libmysqlclient-dev \
+                  python3-dev \
                   nodejs python3-pip \
  && apt-get autoremove -y \
  && apt-get clean \
