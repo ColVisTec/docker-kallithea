@@ -27,8 +27,8 @@ ARG KALLITHEA_VER=0.7.0
 RUN : This is only needed for kallithea installation. \
  && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
  && apt-get install -y --no-install-recommends \
-                    build-essential \
-                    python3-dev python3-cffi \
+                    build-essential libffi-dev \
+                    python3-dev \
                     nodejs python3-pip \
  && : Build su-exec \
  && git -C /tmp clone https://github.com/ncopa/su-exec.git su-exec \
@@ -42,8 +42,8 @@ RUN : This is only needed for kallithea installation. \
  && kallithea-cli front-end-build \
  && : Clean up installation materials. \
  && apt-get purge -y \
-                  build-essential \
-                  python3-dev python3-cffi \
+                  build-essential libffi-dev \
+                  python3-dev \
                   nodejs python3-pip \
  && apt-get autoremove -y \
  && apt-get clean \
