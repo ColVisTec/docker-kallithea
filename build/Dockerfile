@@ -28,14 +28,12 @@ RUN : This is only needed for kallithea installation. \
  && apt-get install -y --no-install-recommends \
                     build-essential libffi-dev \
                     python3-dev libpq-dev libmysqlclient-dev \
-                    nodejs \
+                    nodejs python3-pip \
  && : Build su-exec \
  && git -C /tmp clone https://github.com/ncopa/su-exec.git su-exec \
  && make -C /tmp/su-exec all \
  && mv /tmp/su-exec/su-exec /usr/bin/ \
  && rm -rf /tmp/su-exec \
- && : Install pip.\
- && curl -sL https://bootstrap.pypa.io/get-pip.py | su-exec kallithea:kallithea python3 - "setuptools < 58.0" --user \
  && : Install kallithea and optional packages.\
  && su-exec kallithea:kallithea python3 -m pip install --no-cache-dir --user \
                                                        kallithea${KALLITHEA_VER:+==$KALLITHEA_VER} \
@@ -47,7 +45,7 @@ RUN : This is only needed for kallithea installation. \
  && apt-get purge -y \
                   build-essential libffi-dev \
                   python3-dev libpq-dev libmysqlclient-dev \
-                  nodejs \
+                  nodejs python3-pip \
  && apt-get autoremove -y \
  && apt-get clean \
  && rm -r  /etc/apt/sources.list.d/nodesource.list \
