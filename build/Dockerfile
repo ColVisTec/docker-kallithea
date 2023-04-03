@@ -35,10 +35,10 @@ RUN : This is only needed for kallithea installation. \
  && mv /tmp/su-exec/su-exec /usr/bin/ \
  && rm -rf /tmp/su-exec \
  && : Install kallithea and optional packages.\
- && su-exec kallithea:kallithea python3 -m pip install --no-cache-dir --user \
-                                                       kallithea${KALLITHEA_VER:+==$KALLITHEA_VER} \
-                                                       psycopg2 \
-                                                       mysqlclient \
+ && python3 -m pip install --no-cache-dir \
+                           kallithea${KALLITHEA_VER:+==$KALLITHEA_VER} \
+                           psycopg2 \
+                           mysqlclient \
  && : Preparing the front-end files. \
  && su-exec kallithea:kallithea kallithea-cli front-end-build \
  && : Clean up installation materials. \
