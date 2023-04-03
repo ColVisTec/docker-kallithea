@@ -13,7 +13,7 @@ RUN : This is what to keep installed in the image. \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
                     dumb-init ssh curl locales ca-certificates mercurial git python3 libpq5 libmysqlclient21 busybox-static \
-                    python3-psycopg2 python3-mysqldb \
+                    python3-setuptools python3-psycopg2 python3-mysqldb \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
