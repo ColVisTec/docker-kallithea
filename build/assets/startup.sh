@@ -58,7 +58,7 @@ KALLITHEA_INI=/kallithea/config/kallithea.ini
 PYTHON_BIN=python3
 
 # kallithea installation directory
-KALLITEHA_INSTALL_DIR=$(su-exec kallithea:kallithea $PYTHON_BIN -c "import kallithea;print(kallithea.__path__[0]")
+KALLITEHA_INSTALL_DIR=$(su-exec kallithea:kallithea $PYTHON_BIN -c "import kallithea;print(kallithea.__path__[0])")
 
 # Get the installed version of kallithea.
 INSTALL_KALLITHEA_VER=$(su-exec kallithea:kallithea $PYTHON_BIN -c "import kallithea;print(kallithea.__version__)")
