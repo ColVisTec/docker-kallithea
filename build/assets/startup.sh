@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# change GID/UID
+KALLITHEA_ID_CHANGED=FALSE
+if [ -n "$KALLITHEA_UID" ]; then
+    echo "Change kallithe UID: $KALLITHEA_UID ..."
+    usermod  -o -u "$KALLITHEA_UID" kallithea
+    KALLITHEA_ID_CHANGED=TRUE
+fi
+if [ -n "$KALLITHEA_GID" ]; then
+    echo "Change kallithe GID: $KALLITHEA_GID"
+    groupmod -o -g "$KALLITHEA_GID" kallithea
+    KALLITHEA_ID_CHANGED=TRUE
+fi
+
 # Generate a locale
 LANG=${KALLITHEA_LOCALE:-"en_US.UTF-8"}
 locale-gen --lang ${LANG}
@@ -17,7 +30,7 @@ fi
 
 # fix permission
 KALLITHEA_FIX_PERMISSION=$(echo ${KALLITHEA_FIX_PERMISSION:-TRUE} | tr [:lower:] [:upper:])
-if [ "$KALLITHEA_FIX_PERMISSION" = "TRUE"  ]; then
+if [ "$KALLITHEA_FIX_PERMISSION" = "TRUE" ] || [ "$KALLITHEA_ID_CHANGED" = "TRUE" ]; then
     echo "Fix permissions ..."
     chown -R kallithea:kallithea /kallithea/config
     find /kallithea/config -type d -exec chmod u+wrx {} \;
