@@ -38,9 +38,9 @@ if [ "$KALLITHEA_FIX_PERMISSION" = "TRUE" ] || [ "$KALLITHEA_ID_CHANGED" = "TRUE
     chown kallithea:kallithea /kallithea/repos
     chmod u+wrx /kallithea/repos
     touch /home/kallithea/.ssh/authorized_keys
-    chown -R kallithea:kallithea /home/kallithea/.ssh
     chmod 700 /home/kallithea/.ssh
     chmod 600 /home/kallithea/.ssh/authorized_keys
+    chown -R kallithea:kallithea /home/kallithea/
     
     KALLITHEA_FIX_REPOS_PERMISSION=$(echo ${KALLITHEA_FIX_REPOS_PERMISSION:-FALSE} | tr [:lower:] [:upper:])
     if [ "$KALLITHEA_FIX_REPOS_PERMISSION" = "TRUE"  ]; then
