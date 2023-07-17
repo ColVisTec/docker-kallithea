@@ -94,6 +94,10 @@ The support mode does not execute normal services, but functions as a migration 
 This is used only once when upgrading.  
 For more information, see the 'Migration assistance mode' section below.
 
+- `KALLITHEA_UID`,  `KALLITHEA_GID`  
+If set to a valid UID / GID, it will change the UID / GID of the user running kallithea to this value.
+This option is most usefull, when using mount-binds for `/kallithea/repos` to match docker hosts filesystem.
+
 ### Usage examples
 
 When executing with persistence, the following two steps are assumed as an example.  
