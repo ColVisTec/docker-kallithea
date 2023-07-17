@@ -58,7 +58,7 @@ jobs:
             latest=false
           tags: |
             type=raw,value=latest,enable=${{ github.ref_name == 'main' || !!inputs.with_latest }}
-            type=semver,pattern={{version}},value=${{ matrix.kallithea_version }}-{{branch}},enable=${{ github.ref_name != 'main' }}
+            type=semver,pattern={{version}},value=${{ matrix.kallithea_version }}+{{branch}},enable=${{ github.ref_name != 'main' }}
 
       - name: Cache for Docker 
         id: use-cache
