@@ -73,8 +73,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            ghcr.io/svenroederer/docker-kallithea-toras9000:${{ matrix.kallithea_version }}-${{ github.ref_name }}.${{ github.sha }}
-            ghcr.io/svenroederer/docker-kallithea-toras9000:${{ matrix.kallithea_version }}-latest
+            ghcr.io/svenroederer/docker-kallithea:${{ matrix.kallithea_version }}-${{ github.ref_name }}.${{ github.sha }}
+            ghcr.io/svenroederer/docker-kallithea:${{ matrix.kallithea_version }}-latest
           build-args: KALLITHEA_VER=${{ matrix.kallithea_version }}
 
 #      - name: Sign the published Docker image
