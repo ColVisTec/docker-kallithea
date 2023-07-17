@@ -62,7 +62,7 @@ jobs:
             latest=false
           tags: |
             type=raw,value=latest,enable=${{ github.ref_name == 'main' || !!inputs.with_latest }}
-            type=semver,pattern={{version}},value={{branch}},enable=${{ github.ref_name != 'main' }}
+            type=semver,pattern={{version}},value=${{ matrix.kallithea_version }}+${{ github.ref_name }},enable=${{ github.ref_name != 'main' }}
 
       - name: Build and push Docker image
         id: build-and-push
