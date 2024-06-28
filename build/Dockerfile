@@ -12,7 +12,8 @@ ENV LANG=C.UTF-8
 RUN : This is what to keep installed in the image. \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
-                    dumb-init ssh curl locales ca-certificates mercurial git python3 libpq5 libmysqlclient21 busybox-static \
+                    dumb-init ssh curl locales ca-certificates busybox-static \
+                    mercurial git python3 python3-ldap libpq5 libmysqlclient21 \
                     python3-setuptools python3-psycopg2 python3-mysqldb \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
