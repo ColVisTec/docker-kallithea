@@ -64,6 +64,9 @@ jobs:
             type=raw,value=latest,enable=${{ github.ref_name == 'main' || !!inputs.with_latest }}
             type=semver,pattern={{version}},value=${{ matrix.kallithea_version }}+${{ github.ref_name }},enable=${{ github.ref_name != 'main' }}
 
+      - name: lowercase github-repo (ownername+reponame)
+        run: |
+          echo "IMAGE_NAME=${GITHUB_REPOSITORY@L}" >> ${GITHUB_ENV}
       - name: Build and push Docker image
         id: build-and-push
         uses: docker/build-push-action@v4.0.0
@@ -73,8 +76,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            ghcr.io/svenroederer/docker-kallithea:${{ matrix.kallithea_version }}-${{ github.ref_name }}.${{ github.sha }}
-            ghcr.io/svenroederer/docker-kallithea:${{ matrix.kallithea_version }}-latest
+            ghcr.io/${{ env.IMAGE_NAME }}:${{ matrix.kallithea_version }}-${{ github.ref_name }}.${{ github.sha }}
+            ghcr.io/${{ env.IMAGE_NAME }}:${{ matrix.kallithea_version }}-latest
           build-args: KALLITHEA_VER=${{ matrix.kallithea_version }}
 
 #      - name: Sign the published Docker image
